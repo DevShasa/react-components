@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  @apply bg-gray-50
+  
+}
+
+.p-default{
+  @apply px-2 py-1
+}
+
+/* li{
+  all: unset;
+} */
+
+.upTriangle{
+  --border: rgb(201, 201, 201);
+  position: absolute;
+  border-left: 1px solid var(--border);
+  border-top:1px solid var(--border);
+  transform: rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background-color: rgb(255, 255, 255);
+  top: -6px;
+  left: 15px;
+}
