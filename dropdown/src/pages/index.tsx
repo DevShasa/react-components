@@ -8,9 +8,13 @@ export default function Home() {
     "item 3"
   ]
 
+  const handleCLick = (option:string)=>{
+    console.log("THE SELECTED OPTION IS", option)
+  }
+
   return(
      <div className="p-12 ">
-      <Dropdown options={options}/>
+      <Dropdown options={options} selectOption={handleCLick}/>
      </div>
   )
 }

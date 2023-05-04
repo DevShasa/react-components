@@ -11,9 +11,9 @@ body{
   @apply px-2 py-1
 }
 
-/* li{
-  all: unset;
-} */
+li:first-child {
+  margin-top: .6rem;
+}
 
 .upTriangle{
   --border: rgb(201, 201, 201);
