@@ -1,0 +1,15 @@
+*, *::before, *::after{
+  box-sizing: border-box
+}
+
+body{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style: 1.4;
+}
+
+.container{
+  max-width: 1200px;
+  margin: 2rem auto;
+  width: calc(100vw - 4rem);
+}
