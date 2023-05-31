@@ -25,9 +25,9 @@ function useAsyncInternal(func, dependencies, initialLoading= false){
     const execute = useCallback((...params)=>{
         setLoading(true)
         return func(...params)
+        // runs the function passed in(axios) which returns a promise
                 .then(data=>{
-                    // func returns a promise, the return ..
-                    // inside this .then is availed to the .then attached to the promise when func is called
+                    // func returns a promise which will have a .then (promise chaining)
                     setValue(data)
                     setError(undefined)
                     return data
