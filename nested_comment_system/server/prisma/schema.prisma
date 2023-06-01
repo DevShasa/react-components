@@ -32,9 +32,9 @@ model Comment {
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId String
     post Post @relation(fields: [postId], references: [id])
-    postId String
+    postId String // the id of the parent comment 
     parent Comment? @relation("ParentChild",fields: [parentId], references: [id], onDelete: Cascade)
-    children Comment[] @relation("ParentChild")
+    children Comment[] @relation("ParentChild") // ids of comments that  have this comment as parent 
     parentId String?
     likes Like[]
 }
@@ -44,5 +44,5 @@ model Like{
   comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
   userId String
   commentId String
-  @@id([userId, commentId])
+  @@id([userId, commentId]) // its id concatenates userid and commentid 
 }
