@@ -43,7 +43,7 @@ export const PostProvider=({children})=>{
     
 
     function getRepliesToComment(parentId){
-        return commentsByParentId[parentId]
+        return commentsByParentId[parentId] // will return an array 
     }
 
     function createLocalComment(comment){

@@ -22,6 +22,10 @@ body{
   margin-top: 1rem;
 }
 
+.ml-3 {
+  margin-left: 1.5rem;
+}
+
 .comment-stack{
   margin: .5rem 0;
 }
@@ -49,6 +53,122 @@ body{
   margin-inline: .5rem;
 }
 
+.comment .footer{
+  display: flex;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+
 .comment .header .name{
   font-weight: bold;
+}
+
+.mr-1 {
+  margin-right: .25em;
+}
+
+.btn{
+  --hue: 235;
+  --color: hsl(var(--hue), 100%, 67%);
+  padding: .5em 1em;
+  background: var(--color);
+  color: white;
+  border: none;
+  border-radius: .5em;
+  cursor: pointer;
+  font-size: .75em;
+}
+
+.btn:hover,
+.btn:focus-visible{
+  color: hsl(var(--hue), 100%, 74%);
+
+}
+
+.btn.icon-btn{
+  background: none;
+  color: var(--color);
+  display: flex;
+  align-items: center;
+  padding: .25em;
+}
+
+.btn[disabled]{
+  --color: hsl(var(--hue), 20%, 74%);
+}
+
+.icon-btn:hover,
+.icon-btn:focus-visible{
+  --color: hsl(var(--hue), 100%, 74%);
+}
+
+.icon-btn-active,
+.icon-btn.danger{
+  --hue: 0;
+}
+
+.error-msg{
+  color: hsl(0, 100%, 67%);
+}
+
+.nested-comments-stack{
+  display: flex;
+}
+
+.hide{
+  display: none;
+}
+
+.nested-comments{
+  flex-grow: 1;
+  padding-left: .5rem;
+}
+
+.collapse-line{
+  border: none;
+  background: none;
+  padding: 0;
+  width: 15px;
+  margin-top: .5rem;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transform: translateX(-50%);
+}
+
+.collapse-line:hover::before,
+.collapse-line:focus-visible::before{
+  background-color: hsl(235, 100%, 60%);
+}
+
+.collapse-line::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background-color: hsl(235, 100%, 74%);
+  transition: background-color 100ms ease-in-out;
+}
+
+.comment-form-row{
+  display: flex;
+  gap: .5rem;
+}
+
+.message-input{
+  flex-grow: 1;
+  resize: none;
+  height: 70px;
+  border-radius: .5em;
+  padding: .5em;
+  font-size: inherit;
+  font-family: inherit;
+  border:2px solid hsl(235, 100%, 74%);
+  line-height: 1.4;
+}
+.message-input:focus{
+  border-color: hsl(235, 100%, 67%);
+  outline: none;
 }
