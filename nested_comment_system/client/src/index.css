@@ -13,3 +13,42 @@ body{
   margin: 2rem auto;
   width: calc(100vw - 4rem);
 }
+
+.comments-title{
+  margin-bottom:.5rem;
+}
+
+.mt-4{
+  margin-top: 1rem;
+}
+
+.comment-stack{
+  margin: .5rem 0;
+}
+.comment-stack:last-child{
+  margin-bottom: 0
+}
+
+
+.comment{
+  padding: .5rem;
+  border: 1px solid hsl(245, 100%, 90%);
+  border-radius: .5rem
+}
+
+.comment .header{
+  color: hsl(245, 100%, 67%);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .25rem;
+  font-size: .75rem;
+}
+
+.comment .message{
+  white-space: pre-wrap;
+  margin-inline: .5rem;
+}
+
+.comment .header .name{
+  font-weight: bold;
+}
