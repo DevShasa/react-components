@@ -7,10 +7,12 @@ const api = axios.create({
 })
 
 export function makeRequest(url, options){
+    // return an axios promise
     return api(url, options)
                 .then(res=> res.data)
                 .catch(error=>{
                     // this is how the error is structured on the client
+                    console.log("IKO CHINDA MANGAI", error)
                     Promise.reject(error?.response?.data?.message ?? "Error") 
                 })
 }

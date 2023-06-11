@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const CommentForm = ({loading, error, autoFocus=false, onSubmit, initialValue=""}) => {
+const CommentForm = ({loading, error, autoFocus=true, onSubmit, initialValue=""}) => {
 
     const [message, setMessage] = useState(initialValue)
 
@@ -10,7 +10,7 @@ const CommentForm = ({loading, error, autoFocus=false, onSubmit, initialValue=""
     }
 
     return (
-        <form onSubmit={()=>handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className='comment-form-row'>
                 <textarea 
                     autoFocus = {autoFocus}

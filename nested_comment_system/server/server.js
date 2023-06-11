@@ -5,12 +5,15 @@ import fastifyCors from "@fastify/cors";
 import { PrismaClient } from "@prisma/client";
 dotenv.config()
 
-const app = fastify()
+const app = fastify({
+    logger: true
+})
 app.register(sensible)
 app.register(fastifyCors, {
     origin: process.env.CLIENT_URL,
     credentials: true
 })
+
 const prisma = new PrismaClient()
 
 app.get("/posts", async(req, res)=>{
