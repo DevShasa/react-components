@@ -48,7 +48,7 @@ export const PostProvider=({children})=>{
 
     function createLocalComment(comment){
         setComments(prev=>{
-            return [...comment, prev]
+            return [comment, ...prev]
         })
     }
 
@@ -84,7 +84,7 @@ export const PostProvider=({children})=>{
     }
 
 
-    console.log("COMMENTS AND PARENTS",commentsByParentId)
+    //console.log("COMMENTS AND PARENTS",commentsByParentId)
     return (
     <Context.Provider value={{
         post: {id, ...post}, // adding the id because in the server we dont send it 

@@ -10,13 +10,20 @@ export function Post(){
 
 
 
-    const { post, rootComments } = usePost()
+    const { post, rootComments, createLocalComment  } = usePost()
 
-    function onCommentCreate(message){
-        return execute({postId: post.id, message}).then((comment =>{
-            console.log("YOU HAVE CREATED",comment) // response from server
-        })
-        )
+    async function onCommentCreate(message){
+        // return execute({postId: post.id, message}).then((comment =>{
+        //     console.log("YOU HAVE CREATED",comment) // response from server
+        // })
+        // )
+        try {
+            const comment = await execute({postId: post.id, message})
+           createLocalComment(comment)
+        } catch (error) {
+            console.log("POST ERROR")
+        }
+
     }
     return (
         <>

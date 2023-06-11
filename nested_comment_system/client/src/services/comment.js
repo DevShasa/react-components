@@ -6,7 +6,7 @@ import { makeRequest } from "./makeRequest";
 // basicaly execute takes in a function and then returns a new function that when called will execute
 // ... the original function while updating value, error ,delete 
 export function createComment({postId, message, parentId}){
-    return makeRequest(`post/${postId}/comments`,{
+    return makeRequest(`posts/${postId}/comments`,{
         method:"POST",
         data:{message, parentId}
     } )
