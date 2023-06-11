@@ -74,20 +74,26 @@ app.get("/posts/:id", async(req, res)=>{
                         createdAt: "desc"
                     },
                     select:{
-                        id: true,
-                        message: true,
-                        parentId: true,
-                        createdAt: true,
-                        user:{
+                        ...COMMENT_SELECT_FIELDS,
+                        _count:{
                             select:{
-                                id: true,
-                                name: true
+                                likes: true
                             }
                         }
                     }
                 }
             }
         })
+        // .then(async post =>{
+        //     const likes = await prisma.like.findMany({
+        //         where:{
+        //             userId: req.cookies.userId,
+        //             commentId: {
+        //                 in: post.comments.map(comment => comment.id)
+        //             }
+        //         }
+        //     })
+        // })
     )
 })
 

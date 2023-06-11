@@ -6,11 +6,14 @@ import Commentlist from "./Commentlist";
 import CommentForm from "./CommentForm";
 import { useAsyncFn } from "../hooks/useAsync";
 import { createComment, deleteComment, updateComment, toggleCommentLike } from "../services/comment";
+import { useUser } from "../hooks/useUser";
 
 const Comment = ({ comment }) => {
 	const { message, id, user, createdAt, likeCount, likedByMe } = comment;
+    console.log(comment)
 	const { getRepliesToComment, createLocalComment, post, updateLocalComment, deleteLocalComment, toggleLocalCommentLike } = usePost(); // contexts grabs the post id from the url 
-	const childComments = getRepliesToComment(id);
+    const currentUser = useUser()
+    const childComments = getRepliesToComment(id);
     const {loading, error, execute} = useAsyncFn(createComment)
     const updateCommentFn = useAsyncFn(updateComment)
     const deleteCommentFN = useAsyncFn(deleteComment)
@@ -95,19 +98,23 @@ const Comment = ({ comment }) => {
                         onClick={()=>setIsReplying(prev => !prev)}
                         isActive={isReplying}
                     />
-					<Iconbutton 
-                        Icon={FaEdit} 
-                        aria-label={isEditing ? "Cancel Edit" : "Editing"}
-                        onClick={()=>setIsEditing(prev => !prev)}
-                        isActive={isEditing}
-                    />
-					<Iconbutton
-						Icon={FaTrash}
-                        disabled={deleteCommentFN?.loading}
-						aria-label="Delete"
-						color="danger"
-                        onClick={onCommentDelete}
-					/>
+                    {currentUser.id === user.id &&(
+                        <>
+                            <Iconbutton 
+                                Icon={FaEdit} 
+                                aria-label={isEditing ? "Cancel Edit" : "Editing"}
+                                onClick={()=>setIsEditing(prev => !prev)}
+                                isActive={isEditing}
+                            />
+                            <Iconbutton
+                                Icon={FaTrash}
+                                disabled={deleteCommentFN?.loading}
+                                aria-label="Delete"
+                                color="danger"
+                                onClick={onCommentDelete}
+                            />
+                        </>
+                    )}
 				</div>
                 {deleteCommentFN.error && (
                     <div className="error-msg mt-1">{`ERROR DELETING COMMENT: ` +deleteCommentFN.error}</div>
