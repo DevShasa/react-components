@@ -149,13 +149,13 @@ app.put(`/posts/:postId/comments/:commentId`, async(req, res)=>{
         prisma.comment.update({
             where:{
                 id: req.params.commentId,
-                data:{
-                    message: req.body.message,
-                },
-                select:{
-                    message: true
-                },
-            }
+            },
+            data:{
+                message: req.body.message,
+            },
+            select:{
+                message: true
+            },
         })
     )
 })
@@ -187,10 +187,10 @@ app.delete(`/posts/:postId/comments/:commentId`, async(req, res)=>{
         prisma.comment.delete({
             where:{
                 id: req.params.commentId,
-                select:{
-                    id: true
-                },
-            }
+            },
+            select:{
+                id: true
+            },
         })
     )
 })
@@ -203,7 +203,7 @@ app.post(`/posts/:postId/comments/:commentId/toggleLike`, async(req, res)=>{
         where:{
             userId_commentId:{
                 commentId: req.params.commentId,
-                userId: req.params.userId
+                userId: req.cookies.userId
             }
         }
     })
@@ -213,7 +213,7 @@ app.post(`/posts/:postId/comments/:commentId/toggleLike`, async(req, res)=>{
             prisma.like.create({
                 data:{
                     commentId: req.params.commentId,
-                    userId: req.params.userId
+                    userId: req.cookies.userId
                 }
             })
             .then(()=>{
@@ -226,7 +226,7 @@ app.post(`/posts/:postId/comments/:commentId/toggleLike`, async(req, res)=>{
                 where:{
                     userId_commentId:{
                         commentId: req.params.commentId,
-                        userId: req.params.userId
+                        userId: req.cookies.userId
                     }
                 }
             })

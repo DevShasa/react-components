@@ -75,7 +75,19 @@ export const PostProvider=({children})=>{
             return prev.map(comment =>{
                 if(id === comment.id){
                     // this is the comment we want to update
-
+                    if(addLike){
+                        return {
+                            ...comment,
+                            likeCount: comment.likeCount + 1,
+                            likedByMe: true,
+                        }
+                    }else{
+                        return{
+                            ...comment,
+                            likeCount: comment.likeCount - 1,
+                            likedByMe: false,
+                        }
+                    }
                 }else{
                     return comment
                 }
