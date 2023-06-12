@@ -75,11 +75,11 @@ app.get("/posts/:id", async(req, res)=>{
                     },
                     select:{
                         ...COMMENT_SELECT_FIELDS,
-                        _count:{
-                            select:{
-                                likes: true
-                            }
-                        }
+                        // _count:{
+                        //     select:{
+                        //         likes: true
+                        //     }
+                        // }
                     }
                 }
             }
