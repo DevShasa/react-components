@@ -41,7 +41,6 @@ export const PostProvider=({children})=>{
         setComments(post?.comments)
     },[post?.comments])
     
-
     function getRepliesToComment(parentId){
         return commentsByParentId[parentId] // will return an array 
     }

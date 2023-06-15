@@ -10,7 +10,7 @@ import { useUser } from "../hooks/useUser";
 
 const Comment = ({ comment }) => {
 	const { message, id, user, createdAt, likeCount, likedByMe } = comment;
-    console.log(comment)
+    console.log("LIKED BY ME",likedByMe)
 	const { getRepliesToComment, createLocalComment, post, updateLocalComment, deleteLocalComment, toggleLocalCommentLike } = usePost(); // contexts grabs the post id from the url 
     const currentUser = useUser()
     const childComments = getRepliesToComment(id);
@@ -54,8 +54,8 @@ const Comment = ({ comment }) => {
 
     async function onToggleCommentLike(){
         try {
-            const {addLike} = toggleCommentlikeFN.execute({id, postId: post.id})
-            toggleLocalCommentLike(id, addLike)
+            const res = await toggleCommentlikeFN.execute({id, postId: post.id})
+           toggleLocalCommentLike(id, res.addlike)
         } catch (error) {
             console.log("ERROR LIKING COMMENT")
         }

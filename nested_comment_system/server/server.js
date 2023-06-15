@@ -84,17 +84,28 @@ app.get("/posts/:id", async(req, res)=>{
                     }
                 }
             }
+        }).then(async post =>{
+            const likes = await prisma.like.findMany({
+                where:{
+                    // get likes that have the user's id 
+                    userId: req.cookies.userId,
+                    // filter likes that have the comment id 
+                    commentId: {in: post.comments.map(comment => comment.id)} // extract an array of comment ids 
+                }
+            })
+
+            return {
+                ...post,
+                comments: post.comments.map(comment =>{
+                    const {_count, ...commentFields} = comment
+                    return {
+                        ...commentFields,
+                        likeCount: _count.likes,
+                        likedByMe: likes.find(like => like.commentId === comment.id)
+                    }
+                })
+            }
         })
-        // .then(async post =>{
-        //     const likes = await prisma.like.findMany({
-        //         where:{
-        //             userId: req.cookies.userId,
-        //             commentId: {
-        //                 in: post.comments.map(comment => comment.id)
-        //             }
-        //         }
-        //     })
-        // })
     )
 })
 
