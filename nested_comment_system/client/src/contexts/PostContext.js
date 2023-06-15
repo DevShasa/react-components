@@ -42,6 +42,7 @@ export const PostProvider=({children})=>{
     },[post?.comments])
     
     function getRepliesToComment(parentId){
+        // extract comments with this parent id 
         return commentsByParentId[parentId] // will return an array 
     }
 

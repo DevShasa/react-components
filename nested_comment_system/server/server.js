@@ -101,6 +101,9 @@ app.get("/posts/:id", async(req, res)=>{
                     return {
                         ...commentFields,
                         likeCount: _count.likes,
+                        // has the comment been liked by me
+                        // get the comment id of this comment 
+                        // check the likes array and whether comment id is in liked array
                         likedByMe: likes.find(like => like.commentId === comment.id)
                     }
                 })
