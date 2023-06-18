@@ -120,6 +120,8 @@ const Comment = ({ comment }) => {
                     <div className="error-msg mt-1">{`ERROR DELETING COMMENT: ` +deleteCommentFN.error}</div>
                 )}
 			</div>
+
+            {/* the textt input box that appears when replying a comment */}
             {isReplying &&(
                 <div className="mt-1 ml-3">
                     <CommentForm 
@@ -130,6 +132,9 @@ const Comment = ({ comment }) => {
                     />
                 </div>
             )}
+
+
+            {/* Children comments */}
 			{childComments?.length > 0 && (
 				<>
 					<div
@@ -138,11 +143,13 @@ const Comment = ({ comment }) => {
 						}`}
 					>
 						<button
+                            // this is the straight line that appears on a child comment
 							aria-label="Hide Replies"
 							className="collapse-line"
 							onClick={() => setAreChildrenHidden(true)}
 						/>
 						<div className="nested-comments">
+                            {/* the comment itselefu */}
 							<Commentlist comments={childComments} />
 						</div>
 					</div>
