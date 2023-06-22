@@ -88,30 +88,6 @@
     "ip_address": "69.81.222.88"
   },
   {
-    "id": 12,
-    "first_name": "Holt",
-    "last_name": "Meineking",
-    "email": "hmeinekingb@intel.com",
-    "gender": "Non-binary",
-    "ip_address": "126.37.146.133"
-  },
-  {
-    "id": 13,
-    "first_name": "Haroun",
-    "last_name": "Gauge",
-    "email": "hgaugec@networksolutions.com",
-    "gender": "Bigender",
-    "ip_address": "23.40.34.113"
-  },
-  {
-    "id": 14,
-    "first_name": "Maury",
-    "last_name": "Wanek",
-    "email": "mwanekd@cmu.edu",
-    "gender": "Agender",
-    "ip_address": "208.210.132.193"
-  },
-  {
     "id": 15,
     "first_name": "Ted",
     "last_name": "Biagioni",
