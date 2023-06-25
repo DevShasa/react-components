@@ -13,7 +13,30 @@
 
 body {
   margin: 0;
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
 }
 
+table{
+  width: 100%;
+  table-layout: fixed;
+}
+
+tbody{
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+tr{
+  width: 100%;
+}
+
+th, td{
+  padding: 20px 15px;
+  text-align: left;
+  font-size: 17px;
+  color: black;
+}
 
 

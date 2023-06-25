@@ -1,9 +1,10 @@
+import Table from "./tables/TableOne"
 
 function App() {
 
   return (
     <>
-      Table goes in here
+      <Table />
     </>
   )
 }
