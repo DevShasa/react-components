@@ -58,7 +58,7 @@ const SpotlightComponent = (props: Props) => {
           className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
           style={{
             opacity: opacity,
-            background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,.06), transparent 80%)`,
+            background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,.06), transparent 40%)`,
           }}
         />
         <h3 className="mb-2 font-medium tracking-tight text-white">Hello!</h3>

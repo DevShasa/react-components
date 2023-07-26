@@ -1,0 +1,82 @@
+:root{
+  box-sizing: border-box;
+}
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+* {margin: 0 }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(45deg,#d47171, #8e94dd);
+}
+
+h1{
+  color:rgb(122, 6, 122);
+  text-align: center;
+}
+
+form{
+  background-color: white;
+  padding: 0px 30px;
+  padding-top: 10px;
+  border-radius: 10px;
+}
+
+.formInput{
+
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  input {
+    padding: 15px;
+    margin: 10px 0px;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+    &:invalid[customAtributeToSupportShowErrorLogic="true"] ~ span{
+      display: block;
+    }
+
+    &:invalid[customAtributeToSupportShowErrorLogic="true"]{
+      border: 1px solid red; 
+    }
+  }
+  label{
+    font-size: 12;
+    color: gray;
+  }
+
+  span{
+    color:red;
+    font-size:12px;
+    padding:3px;
+    display:none;
+  }
+
+}
+
+button{
+  width: 100%;
+  border: none;
+  height: 50px;
+  color:white;
+  background-color: rgb(122, 6, 122);
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
