@@ -1,30 +1,39 @@
-import {useState} from 'react'
-import { BsFillCloudUploadFill } from "react-icons/bs"
-import { useGetTodosQuery } from '../features/api/apiSlice'
+import { useRef} from 'react'
+import { BsFillCloudUploadFill, BsFillTrash3Fill } from "react-icons/bs"
+import { useGetTodosQuery, useAddTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '../features/api/apiSlice'
 
 const Todolist = () => {
-  
-    const [newTodo, setNewTodo] = useState("")
 
+    const inputRef = useRef<HTMLInputElement | null>(null)
+  
+    
     const { data, isLoading, isSuccess, isError, error } = useGetTodosQuery()
+    const [addTodo] = useAddTodoMutation()
+    const [updateTodo] = useUpdateTodoMutation()
+    const [deleteTodo] = useDeleteTodoMutation()
 
     const handleSubmit = (e:React.FormEvent)=>{
         e.preventDefault()
-
-        setNewTodo("")
+        if(inputRef.current?.value){
+            console.log("OUTPUT",inputRef.current.value)
+            addTodo({
+                userId: 1,
+                title: inputRef.current.value,
+                completed: false
+            })
+            inputRef.current.value = ""
+        }
     }
 
-
+    console.log(isError, error )
     const NewItemSection = () =>{
         return(
             <form onSubmit={handleSubmit}>
-            <label htmlFor='new-todo'>Enter a new todo item</label>
             <div className='new-todo'>
                 <input
                     type='text'
                     id="new-todo"
-                    value={newTodo}
-                    onChange={(e)=> setNewTodo(e.target.value)}
+                    ref={inputRef}
                 />
             </div>
             <button className='submit'>
@@ -39,10 +48,29 @@ const Todolist = () => {
     if(isLoading){
         content = <p>..loading</p>
     }else if(isSuccess){
-        content = JSON.stringify(data)
+        content = data?.map((todo)=>{
+            return (
+                <article key={todo.id}>
+                    <div className='todo'>
+                        <input 
+                            type="checkbox"
+                            checked={todo.completed}
+                            id={String(todo.id)}
+                            onChange={()=>updateTodo({...todo, completed: !todo.completed})}
+                        />
+                        <label htmlFor={String(todo.id)}>{todo.title}</label>
+                    </div>
+                    <button className='trash' onClick={()=>{
+                            deleteTodo({id:todo.id})
+                        }}>
+                        <BsFillTrash3Fill />
+                    </button>
+                </article>
+            )
+        })
     }else if(isError){
         if('status' in error){
-            content = <p>{error.data as string}</p>
+            content = <p>{error.status }</p>
         }else{
             content = <p>{error.message as string}</p>
         }
