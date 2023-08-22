@@ -89,7 +89,8 @@ app.get("/posts/:id", async(req, res)=>{
                 where:{
                     // get likes that have the user's id 
                     userId: req.cookies.userId,
-                    // filter likes that have the comment id 
+                    // The user liked other comments in other posts
+                    // get the likes that are specificaly in the comments for this post
                     commentId: {in: post.comments.map(comment => comment.id)} // extract an array of comment ids 
                 }
             })
@@ -101,12 +102,17 @@ app.get("/posts/:id", async(req, res)=>{
                     return {
                         ...commentFields,
                         likeCount: _count.likes,
-                        // has the comment been liked by me
-                        // get the comment id of this comment 
-                        // check the likes array and whether comment id is in liked array
-                        likedByMe: likes.find(like => like.commentId === comment.id)
+                        // likes contains likes for other comments
+                        // return the likes that have the specific id for this comment
+                        // all the likes have the same user id, 
+                        // if the id of this comment is in likes then this comment was liked by me...
+                        // ...and find will return an object which is truthy 
+                        likedByMe: likes.find(like => like.commentId === comment.id) ? true : false
                     }
-                })
+                }),
+                // I added the fields below so I could console.log the values client 
+                /// side and see what they contain
+                debugLikes: likes,
             }
         })
     )

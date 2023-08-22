@@ -10,7 +10,7 @@ import { useUser } from "../hooks/useUser";
 
 const Comment = ({ comment }) => {
 	const { message, id, user, createdAt, likeCount, likedByMe } = comment;
-    console.log("LIKED BY ME",likedByMe)
+   // console.log("LIKED BY ME",likedByMe)
 	const { getRepliesToComment, createLocalComment, post, updateLocalComment, deleteLocalComment, toggleLocalCommentLike } = usePost(); // contexts grabs the post id from the url 
     const currentUser = useUser()
     const childComments = getRepliesToComment(id);

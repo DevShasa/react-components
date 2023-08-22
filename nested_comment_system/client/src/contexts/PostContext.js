@@ -16,6 +16,12 @@ export const PostProvider=({children})=>{
     const [comments, setComments] = useState([])
 
     const commentsByParentId = useMemo(()=>{
+        /** 
+         * Root comments dont have a parent and will be null
+         * so this function will assign all root comments under group[null]
+         * comments that have a parent id will be under group[parentid]
+        */
+
         const group = {}
         comments?.forEach(comment=>{
             // extract the comments with the parent id
@@ -40,6 +46,11 @@ export const PostProvider=({children})=>{
         if(post?.comments === null) return
         setComments(post?.comments)
     },[post?.comments])
+
+
+    // console.log("LIKES", post?.debugLikes)
+    // console.log("LIKEDBYME", post?.debugLikedByMe)
+    console.log(post)
     
     function getRepliesToComment(parentId){
         // extract comments with this parent id 
