@@ -1,69 +1,144 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+*, ::before, ::after {
+  box-sizing: inherit;
 }
-a:hover {
-  color: #535bf2;
-}
+
+* {margin: 0 }
 
 body {
   margin: 0;
+}
+
+.post_container_content{
+  max-width: 500px;
+  margin: 0 auto;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 10px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.post_container_content > button{
+  all: unset;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all .2s ease-in-out;
+  width: 100px;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.post_container_content > button:hover{
+  background-color: rgb(202, 202, 202);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.post_content_container{
+  position: relative;
 }
+
+.post_contents{
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(17, 17, 17);
+  position: absolute; 
+  width: 500px;
+  height: 300px;
+  background-color: wheat;
+}
+
+.post_contents > .post_contents_heading{
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.post_content_border{
+  position: absolute; 
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
+  background-color: rgb(163, 163, 163);
+  transform: translateX(2%) translateY(3%);
+  transition: .4s;
+}
+
+.post_content_container:hover .post_content_border{
+  transform: translateX(1%) translateY(1%);
+
+}
+
+
+/* Styles for the form */
+
+form{
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 1rem;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: antiquewhite;
+}
+.input_item > p{
+  margin-bottom: 5px;
+}
+.input_item > input,  select{
+  width: 100%;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  outline: 2px solid black;
+  transition: outline .2s ease-in
+}
+
+.input_item > input:focus,  select:focus{
+  outline: 2px solid blue;
+}
+
+.input_item > button {
+  margin-top: 5px;
+  margin-left: -2px;
+  padding: 5px 10px;
+  font-size: 15px;
+  border-radius: 7px;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: all .2s ease-in;
+
+}
+
+.input_item > button:hover{
+  border: 2px solid blue
+}
+
+
+.input_item.quantity_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.submit_btn{
+  width: 100%;
+}
+.span_box{
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+.span_box > span{
+  background-color: black;
+  padding: 3px;
+  color: white;
+  font-size: 14px;
+  border-radius: 3px;
+}
+
