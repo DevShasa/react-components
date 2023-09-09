@@ -44,9 +44,8 @@ const validator = (input: keyof typeof FORM_ACTIONS, value: string) => {
 			}
 		}
 		case "PHONE": {
-			//const phoneRegex = /^[0-9]+$/;
-			//if(value.length < 4 && !phoneRegex.test(value)){
-			if (value.length < 4) {
+			const phoneRegex = /^[0-9]+$/;
+			if(value.length < 4 || !phoneRegex.test(value)){
 				return "Number should be greater than 4 and consist of only numbers 0-9";
 			} else {
 				return "";

@@ -142,7 +142,11 @@ form{
   border-radius: 3px;
 }
 
-.input_item > .input_error:focus, .input_error{
+.input_item > .input_error:focus {
+  outline: 2px solid rgb(252, 0, 0);
+}
+
+.input_item >.input_error{
   outline: 2px solid rgb(252, 0, 0);
 }
 
