@@ -1,12 +1,14 @@
-// import FetchPost from "./FetchPost"
+ import FetchPost from "./FetchPost"
 import FormReducer from "./FormReducer"
+import RealimeInputValidation from "./RealimeInputValidation"
 
 function App() {
 
   return (
     <>
       {/* <FetchPost /> */}
-      <FormReducer />
+      {/* <FormReducer /> */}
+      <RealimeInputValidation />
     </>
   )
 }

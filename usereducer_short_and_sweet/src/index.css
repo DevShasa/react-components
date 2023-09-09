@@ -142,3 +142,13 @@ form{
   border-radius: 3px;
 }
 
+.input_item > .input_error:focus, .input_error{
+  outline: 2px solid rgb(252, 0, 0);
+}
+
+.error_notification{
+  color: red;
+  display: inline-block;
+  font-size: 10px;
+  margin-block: 5px;
+}
