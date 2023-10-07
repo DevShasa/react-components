@@ -1,62 +1,85 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useReducer, useRef } from 'react'
 
-type Props = {
-    fn: (id?:string) =>  Promise<any>,
-    onSuccess?: (data:any)=> void,
-    onError?: (error:any)=> void
+interface State<T>{
+    data?: T,
+    error?: Error,
+    loading: boolean
 }
 
-const useQuery = (props: Props) => {
-
-    const {fn ,onSuccess, onError} = props
-
-    const [state, setState] = useState({
-        data: null,
-        isloading: true,
-        isSuccess: false,
-        isError: false,
-        error:""
-    })
-
-    const runQuery = useCallback(()=>{
-
-        setState(prev => ({...prev, isloading: true}));
-
-        fn()
-            .then((data)=>{
-                setState({
-                    data: data,
-                    isloading: false,
-                    isSuccess: true,
-                    isError: false,
-                    error:""
-                })
-
-                if(onSuccess) onSuccess(data)
-            })
-            .catch(error =>{
-                setState({
-                    data: null,
-                    isloading: false,
-                    isSuccess: true,
-                    isError: false,
-                    error: error.message || "Failed to fetch"
-                })
-
-                if(onError) onError(error)
-            })
-
-    },[fn, onSuccess, onError]) 
+type Cache<T> = {[url:string]: T}
 
 
+type Action<T> = 
+    | {type:"loading"}
+    | {type:"fetched", payload: T}
+    | {type:"error", payload: Error}
+
+export function useFetch<T = unknown>(url?:string, options?: RequestInit): State<T>{
+    const cache = useRef<Cache<T>>({})
+    const canceleQuest = useRef<boolean>(false)
+
+    const initialState: State<T> = {
+        error: undefined,
+        data: undefined,
+        loading: false
+    }
+
+    // state logic
+    const fetchReducer = (state: State<T>, action:Action<T>): State<T> =>{
+        switch(action.type){
+            case "loading":
+                return { ...initialState, loading:true }
+            case "fetched":
+                return { ...initialState, data: action.payload, loading:false }
+            case "error":
+                return { ...initialState, error: action.payload, loading: false }
+            default:
+                return state
+        }
+    }
+
+    const [ state, dispatch ] = useReducer(fetchReducer, initialState)
 
     useEffect(()=>{
-        runQuery
-    },[runQuery])
+        if(!url) return
+        canceleQuest.current = false
 
-  return (
-    <div>useQuery</div>
-  )
+        const fetchData = async ()=>{
+            dispatch({type:"loading"})
+            
+            if(cache.current[url]){
+                dispatch({type:"fetched", payload:cache.current[url]})
+                return
+            }
+
+            try {
+                const response = await fetch(url, options)
+                if(!response.ok){
+                    throw new Error(response.statusText)
+                }
+
+                const data = (await response.json()) as T
+                cache.current[url] =  data
+                
+                if(canceleQuest.current) return
+
+                dispatch({type:'fetched', payload: data})
+
+            } catch (error) {
+                if(canceleQuest.current) return
+                dispatch({type:"error", payload: error as Error})
+            }
+        }
+
+        fetchData()
+
+        return () => {
+            // prevent data from being fetched when component is unmounted
+            canceleQuest.current = true
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [url])
+
+
+    return state
 }
-
-export default useQuery
