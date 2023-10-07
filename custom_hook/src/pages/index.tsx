@@ -8,6 +8,7 @@ import {
   VStack
 } from '@chakra-ui/react'
 import { useFetch } from '@/hooks/useQuery'
+import { useRouter } from 'next/router'
 
 const url = `http://jsonplaceholder.typicode.com/posts`
 
@@ -21,7 +22,9 @@ interface Post {
 const PostHome = () =>{
   const {data, error, loading} = useFetch<Post[]>(url)
 
-  console.log(data)
+  const router = useRouter()
+
+
 
   return(
     <Box>
@@ -48,6 +51,11 @@ const PostHome = () =>{
                   <Text overflow={'hidden'} textOverflow={'ellipsis'} whiteSpace={'nowrap'} mb={5}>
                     {body}
                   </Text>
+                  <Button onClick={()=>{
+                    router.push(`/posts/${id}/edit`)
+                  }}>
+                    Edit
+                  </Button>
               </Card>
             )
           })}
