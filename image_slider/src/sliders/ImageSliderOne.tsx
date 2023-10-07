@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {ArrowBigLeft, ArrowBigRight} from "lucide-react"
+import {ArrowBigLeft, ArrowBigRight, Circle, CircleDot} from "lucide-react"
 
 type Props = {
     imageUrls: string[]
@@ -56,11 +56,20 @@ const ImageSliderOne = (props: Props) => {
         <button className='image_slider_button' style={{left: 0}} onClick={showNextImage}><ArrowBigLeft /></button>
         <button className='image_slider_button' style={{right: 0}} onClick={showPreviousImage}><ArrowBigRight /></button>
 
-        <div>
+        <div
+            style={{
+                position:"absolute",
+                bottom:".5rem",
+                left:"50%",
+                translate:"-50%",
+                display: "flex",
+                gap:".25rem"
+            }}
+        >
             {imageUrls.map((_, index)=>{
                 return (
-                <button onClick={()=>setImageIndex(index)}>
-                    {index}
+                <button onClick={()=>setImageIndex(index)} key={index} className='dot_buttons'>
+                    {index === imageIndex ? <CircleDot /> : <Circle />}
                 </button>)
             })}
         </div>
