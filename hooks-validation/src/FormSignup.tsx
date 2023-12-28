@@ -1,14 +1,13 @@
 import useForm from "./useForm"
 
-
 type Props = {
-    submitAction: ()=> void
+    setFormAsSubmitted: ()=> void
 }
 
 const FormSignup = (props: Props) => {
 
-    const { submitAction } = props
-    
+    const { handleSubmit, handlechange, values, errors } = useForm(props.setFormAsSubmitted)
+
   return (
     <div className="form-content-right">
         <form className="form">
@@ -24,7 +23,10 @@ const FormSignup = (props: Props) => {
                     className="form-input"
                     name="username"
                     placeholder="Enter your username"
+                    value={values.username}
+                    onChange={handlechange}
                 />
+                {errors.username && <p>{errors.username}</p>}
             </div>
             <div className="form-inputs">
                 <label htmlFor="email" className="form-label"> Email</label>
@@ -34,7 +36,10 @@ const FormSignup = (props: Props) => {
                     className="form-input"
                     name="email"
                     placeholder="Enter your email"
+                    value={values.email}
+                    onChange={handlechange}
                 />
+                {errors.email && <p>{errors.email}</p>}
             </div>
             <div className="form-inputs">
                 <label htmlFor="password" className="form-label"> Password</label>
@@ -44,7 +49,10 @@ const FormSignup = (props: Props) => {
                     className="form-input"
                     name="password"
                     placeholder="Enter your password"
+                    onChange={handlechange}
+                    value={values.password}
                 />
+                {errors.password && <p>{errors.password}</p>}
             </div>
             <div className="form-inputs">
                 <label htmlFor="password2" className="form-label"> Confirm Password</label>
@@ -54,11 +62,15 @@ const FormSignup = (props: Props) => {
                     className="form-input"
                     name="password2"
                     placeholder="Confirm password"
+                    onChange={handlechange}
+                    value={values.password2}
                 />
+                {errors.password2 && <p>{errors.password2}</p>}
             </div>
             <button 
                 className="form-input-btn"
                 type="submit"
+                onClick={handleSubmit}
             >
                 Sign Up
             </button>

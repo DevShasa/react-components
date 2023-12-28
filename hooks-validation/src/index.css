@@ -10,3 +10,8 @@
   box-sizing: inherit;
 }
 * {margin: 0 }
+
+
+.form-inputs > p{
+  color: red;
+}
