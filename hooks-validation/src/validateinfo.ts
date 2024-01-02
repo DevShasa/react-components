@@ -27,5 +27,9 @@ export default function validateInfo(values:Ivalues){
         errors.password2 = "Passwords do not match"
     }
 
+    console.log("ERRORS FROM FUNCTION--->", errors)
+
     return errors
+
+    
 }

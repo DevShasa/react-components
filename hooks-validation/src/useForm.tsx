@@ -13,7 +13,6 @@ const useForm = (setSubmittedToTrue: ()=>void) =>{
     const [errors, setErrors] = useState<Partial<Ivalues>>({})
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-
     const handlechange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = e.target
         
@@ -22,10 +21,14 @@ const useForm = (setSubmittedToTrue: ()=>void) =>{
 
     const handleSubmit = (e:React.FormEvent)=>{
         e.preventDefault()
-        setErrors(validateInfo(values))
-        console.log("!!! ")
 
-        if(Object.keys(errors).length === 0){
+        setErrors(validateInfo(values))
+
+        console.log("!!! ")
+        console.log("ERRORS--->", errors)
+
+        // if(Object.keys(errors).length === 0 && !Object.values(values).some((val) => val === "")){
+        if(Object.keys(validateInfo(values)).length === 0){
             setIsSubmitting(true)
             try {
                 // submit and then 
@@ -38,6 +41,7 @@ const useForm = (setSubmittedToTrue: ()=>void) =>{
             }
         }
     }
+
 
 
     return { handlechange, handleSubmit, values, errors, isSubmitting }
