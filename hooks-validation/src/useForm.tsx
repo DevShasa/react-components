@@ -17,6 +17,9 @@ const useForm = (setSubmittedToTrue: ()=>void) =>{
         const { name, value } = e.target
         
         setValues({...values, [name]: value}) 
+
+        // Uncomment below for checking errors on submit
+        // setErrors(validateInfo(values))
     }
 
     const handleSubmit = (e:React.FormEvent)=>{
