@@ -30,6 +30,4 @@ export default function validateInfo(values:Ivalues){
     console.log("ERRORS FROM FUNCTION--->", errors)
 
     return errors
-
-    
 }

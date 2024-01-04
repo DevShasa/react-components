@@ -117,7 +117,7 @@ const FormUsingUseReducerValidation = () => {
     const [formState, dispatch] = useReducer(formReducer, initial_state);
 
   return (
-    <div className="form-content-right">
+    <div className="form-content-right first">
         <form className="form">
             <h1>
                 This form is using usereducer for validation

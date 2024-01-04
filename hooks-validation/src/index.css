@@ -57,6 +57,10 @@
   position: relative;
   background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
 }
+.form-content-right.first{
+  border-radius: 10px 0 0 10px;
+
+}
 .form{
   position: absolute;
   top: 50%;
