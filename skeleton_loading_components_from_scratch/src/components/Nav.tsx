@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import { getUsers } from "../api/usersApi";
 import { User } from "../globaltypes";
+import { usersEdnpoint } from "../utils";
 
 type INavProps = {
 	currentUserId: number;
@@ -19,7 +20,7 @@ const Nav = (props: INavProps) => {
     //     return res
     // }
 
-	const { isLoading, error, data: employees, } = useSWR("/users", getUsers);
+	const { isLoading, error, data: employees, } = useSWR(usersEdnpoint, getUsers);
     //console.log(`${baseUrl}${usersEdnpoint}`)
     console.log("---->",employees)
 
