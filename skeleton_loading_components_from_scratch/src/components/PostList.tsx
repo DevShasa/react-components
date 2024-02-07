@@ -4,6 +4,7 @@ import { getPostbyUserId } from "../api/postsApi";
 import { postsEndpoint, usersEdnpoint } from "../utils";
 import Post from "./Post";
 import { Post as Ipost } from "../globaltypes";
+import SkeletonPost from "./skeletons/SkeletonPost";
 
 interface IpostList{
     currentUserId: number
@@ -21,7 +22,7 @@ const PostList = (props:IpostList) => {
     if(currentUserId === 0){
         content = <p className="loading">Select an employee to view posts</p>
     }else if(isLoading || isLoadingUser){
-        content = ([...Array(10).keys()].map(i=>(<p key={i}>Loading</p>)))
+        content = ([...Array(10).keys()].map(i=>(<SkeletonPost key={i}/>)))
     }else if(error || userError){
         content = <p>{error.message || userError.message}</p>
     }else{
