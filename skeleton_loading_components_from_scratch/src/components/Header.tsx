@@ -10,7 +10,7 @@ const Header = (props:IHeaderProps) =>{
 
     return(
         <header>
-            <h1>Acme Blog</h1>
+            <h1>Acme Blog (Remember to start json server)</h1>
             <Nav currentUserId={currentUserId} setCurrentUserId={setCurrentUserId}/>
         </header>
     )
