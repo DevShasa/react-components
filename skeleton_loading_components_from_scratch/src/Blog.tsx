@@ -1,0 +1,1 @@
+// code to demonstrate creating skeleton components for my blog
