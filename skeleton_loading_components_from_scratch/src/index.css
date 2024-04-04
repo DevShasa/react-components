@@ -127,3 +127,29 @@ main {
         box-shadow: 2px 2px 2px 2px var(--BOX-SHADOW);
     }
 }
+
+.skelton{
+    background-color: rgba(199,199,199,0.979);
+    margin: 0.75rem 0;
+    border-radius: 0.25rem;
+}
+.skelton.title{
+    height: 1.25rem;
+    margin-bottom: 1rem;
+}
+.skelton.width-50{
+    width: 50%;
+}
+.skelton.text{
+    height: 0.75rem;
+}
+
+@keyframes pulse {
+    50%{
+        opacity: .5;
+    }
+}
+
+.animate_pulse{
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

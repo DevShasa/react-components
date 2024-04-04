@@ -6,7 +6,7 @@
 import { useState, useEffect, useCallback } from "react"
 
 // delay for one second
-const delay = () => new Promise<void>((res)=> setTimeout(()=> res(), 1000))
+const delay = () => new Promise<void>((res)=> setTimeout(()=> res(), 2000))
 
 // api calls for post
 const fetchPosts = async():Promise<[]>=>{
@@ -46,19 +46,37 @@ const Blog = () => {
     let content
     
     if(loading){
-        content = <div>Loading</div>
+        content = ([...Array(10).keys()].map(i=> <Skeleton key={i}/>))
     }else if(error){
         content = <div>{`${error}`}</div>
     }else{
         content = (
             <div>
-                kuna content
+                {data.map((post:{title:string, body:string, id:number}, index)=>{
+                    return (
+                        <article className="post" key={index}>
+                            <h2>{post.title}</h2>
+                            <p>{post.body}</p>
+                            <p>Post ID: {post.id}</p>
+                        </article>)
+                })}
             </div>
         )
     }
 
   return content
 
+}
+
+const Skeleton = ()=>{
+    return(
+        <div className="post">
+            <div className="skelton title width-50  animate_pulse"></div>
+            <div className="skelton text animate_pulse"></div>
+            <div className="skelton text animate_pulse"></div>
+            <div className="skelton text animate_pulse"></div>
+        </div>
+    )
 }
 
 export default Blog
