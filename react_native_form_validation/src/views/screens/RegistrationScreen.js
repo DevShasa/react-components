@@ -4,8 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { COLORS } from '../../constants/colors'
 //import { COLORS } from "../../constants/colors"
 import Input from '../components/input'
+import Button from '../components/button'
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({navigation}) => {
     console.log("WOLAN")
   return (
     <View style={styles.main}>
@@ -26,6 +27,17 @@ const RegistrationScreen = () => {
                 // error="Input Email"
                 password
             />
+            <Input 
+                label="Password"
+                iconName="lock-outline"
+                placeholder="Enter your password"
+                // error="Input Email"
+                password
+            />
+            <Button title={"Register"}/>
+            <Text style={styles.bottomPromptText} onPress={()=>navigation.navigate("LoginScreen")}>
+                Already have an account ? Login
+            </Text>
         </View>
       </ScrollView>
     </View>
@@ -53,5 +65,11 @@ const styles = StyleSheet.create({
         color:COLORS.grey,
         fontSize: 18,
         marginVertical: 10
+    },
+    bottomPromptText:{
+        color:COLORS.black,
+        textAlign:"center",
+        fontSize: 16,
+        fontWeight:"bold"
     }
 })
