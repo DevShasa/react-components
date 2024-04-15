@@ -100,7 +100,7 @@ const RegistrationScreen = ({navigation}) => {
                 iconName="email-outline"
                 placeholder="Enter your email address"
                 onChangeText ={(text)=>handleOnChange(text, "email")}
-                onfocus={()=> handleErrors("", "email")}
+                onfocus={()=> handleErrors("", "email")} // clear error when input is focussed 
                 error={errors.email && errors.email}
             />
             <Input
@@ -109,7 +109,7 @@ const RegistrationScreen = ({navigation}) => {
                 placeholder="Enter your Full name"
                 // error="Input Email"
                 onChangeText ={(text)=>handleOnChange(text, "fullName")}
-                onfocus={()=> handleErrors("", "fullName")}
+                onfocus={()=> handleErrors("", "fullName")} // clear error when input is focussed 
                 error={errors.fullName && errors.fullName}
             />
             <Input 
@@ -119,7 +119,7 @@ const RegistrationScreen = ({navigation}) => {
                 keyboardType="numeric" 
                 onChangeText ={(text)=>handleOnChange(text, "phone")}
                 // error="Input Email"
-                onfocus={()=> handleErrors("", "phone")}
+                onfocus={()=> handleErrors("", "phone")} // clear error when input is focussed 
                 error={errors.phone && errors.phone}
             />
             <Input 
@@ -129,7 +129,7 @@ const RegistrationScreen = ({navigation}) => {
                 // error="Input Email"
                 password
                 onChangeText ={(text)=>handleOnChange(text, "password")}
-                onfocus={()=> handleErrors("", "password")}
+                onfocus={()=> handleErrors("", "password")} // clear error when input is focussed 
                 error={errors.password && errors.password}
             />
             <Button title={"Register"} onPress={validate}/>

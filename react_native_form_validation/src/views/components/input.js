@@ -2,7 +2,6 @@ import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { COLORS } from '../../constants/colors'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-import { Colors } from 'react-native/Libraries/NewAppScreen'
 const Input = ({label, iconName, error, password, onfocus = ()=>{}, ...props}) => {
   
     const [isFocussed, setIsFocussed] = useState(false)
